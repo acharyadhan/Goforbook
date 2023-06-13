@@ -2,10 +2,12 @@
 import 'package:buy_it/product_info.dart';
 import 'package:flutter/material.dart';
 class ProductItem extends StatelessWidget {
-  final String id;
+  final String price;
   final String title;
   final String imageURL;
-  const ProductItem(this.id, this.title,  this.imageURL, {super.key});
+  final String description;
+
+  const ProductItem(this.price, this.title,this.imageURL,  this.description, {super.key});
 
   static const String name='productItem';
 
@@ -16,10 +18,10 @@ class ProductItem extends StatelessWidget {
 
       child: GridTile(
           footer: GridTileBar(
-            leading: IconButton(onPressed: null,
+           /** leading: IconButton(onPressed: null,
                 icon: Icon(Icons.favorite_outline)),
               trailing: IconButton(onPressed: null,
-                  icon: Icon(Icons.shopping_bag_outlined )),
+                  icon: Icon(Icons.shopping_bag_outlined )), **/
 
               backgroundColor: Colors.blueGrey[500],
 
@@ -29,7 +31,8 @@ class ProductItem extends StatelessWidget {
           // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>ProductDetail(title) ));
             // The problem with this approach is that at the present we dont need price but we have to pass  price which needs to be pass but only one argument can be pssed
               //This is solved by method pushnamed
-              Navigator.pushNamed(context, ProductDetail.name, arguments: {'title': title,'id': id});
+              //you can pass solo argument also
+              Navigator.pushNamed(context, ProductDetail.name, arguments: {'title': title, 'description':description, 'imageURL':imageURL, 'Price':price});
             },
             child: Image.network( imageURL,
             fit: BoxFit.cover ),
