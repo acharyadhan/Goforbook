@@ -1,5 +1,8 @@
 
+import 'package:buy_it/Providers/products.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 class ProductDetail extends StatelessWidget {
   //final String title;
   //ProductDetail (this.title);
@@ -11,10 +14,12 @@ class ProductDetail extends StatelessWidget {
   Widget build(BuildContext context) {
   final arguments = ModalRoute.of(context)?.settings.arguments as  Map<String,String>;// key value
   // This is how the arguments i.e here title is received from ProductItem Screen
-   print(arguments);
+  print(Provider.of<Products>(context).items[0].id);
+final loadedProduct =  Provider.of<Products>(context).items.firstWhere((prod) => prod.id==arguments['id']);
+print(loadedProduct);
     return Scaffold(
       appBar: AppBar(
-        title: Text(arguments['title']!),
+        title: Text(loadedProduct.title),
         centerTitle: true,
 
       ),

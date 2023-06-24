@@ -2,12 +2,14 @@
 import 'package:buy_it/product_info.dart';
 import 'package:flutter/material.dart';
 class ProductItem extends StatelessWidget {
+  final String id;
   final String price;
   final String title;
   final String imageURL;
   final String description;
 
-  const ProductItem(this.price, this.title,this.imageURL,  this.description, {super.key});
+
+  const ProductItem(this.id,this.price, this.title,this.imageURL,  this.description, {super.key});
 
   static const String name='productItem';
 
@@ -32,7 +34,7 @@ class ProductItem extends StatelessWidget {
             // The problem with this approach is that at the present we dont need price but we have to pass  price which needs to be pass but only one argument can be pssed
               //This is solved by method pushnamed
               //you can pass solo argument also
-              Navigator.pushNamed(context, ProductDetail.name, arguments: {'title': title, 'description':description, 'imageURL':imageURL, 'Price':price});
+              Navigator.pushNamed(context, ProductDetail.name, arguments: {'id':id,'title': title, 'description':description, 'imageURL':imageURL, 'Price':price, });
             },
             child: Image.network( imageURL,
             fit: BoxFit.cover ),
